@@ -17,15 +17,15 @@ if (isset($_POST["id"])) {
     $name = $userDetails[0]['nom'];
     $classe = $userDetails[0]['classe'];
 
-    $stmt = $conn->prepare("SELECT * FROM planning WHERE `classe` = :classe OR `nom` = :name);
+    $stmt = $conn->prepare("SELECT * FROM planning WHERE `classe` = :classe OR `nom` = :name");
     $stmt->execute([':name' => $name, ':classe' => $classe]);
-    
+
     if ($stmt->rowCount() > 0) {
         $output = array();
         $output = $stmt->fetchAll();
         echo json_encode($output);
     } else {
-        $errors = "No data found for this date";
+        $errors = 'No data found for this date';
         echo json_encode($errors);
     }
     // $conn->close();
