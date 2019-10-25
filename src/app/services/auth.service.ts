@@ -75,7 +75,7 @@ export class AuthService {
     return this.http.post('https://attendance-ics.herokuapp.com/myApp/src/app/api/getCours.php?id=' + idIntervenant, {
       date,
     }).subscribe(data => {
-      console.log(Object.values(data));
+      // console.log(Object.values(data));
       let planningData = Object.values(data);
       const grabArray = planningData[0];
       const id = grabArray.intervenant_id;

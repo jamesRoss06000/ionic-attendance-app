@@ -18,11 +18,11 @@ if (isset($_POST["date"])) {
     $nom = $details[0]['nom'];
     $lieux = $details[0]['lieux'];
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE `nom` = :nom AND `classe` = :classe");
-    $stmt->execute([':nom' => $nom, ':classe' => $classe]);
+    $stmt = $conn->prepare("SELECT * FROM users WHERE `nom` = :nom");
+    $stmt->execute([':nom' => $nom]);
     if ($stmt->rowCount() > 0) {
-        $output = array();
         $output = $stmt->fetchAll();
+        var_dump($output);
         $newOutput = array();
         array_push($newOutput, $output, $id_planning, $lieux);
         echo json_encode($newOutput);
@@ -30,7 +30,6 @@ if (isset($_POST["date"])) {
         $stmt1 = $conn->prepare("SELECT * FROM users WHERE `classe` = :classe");
         $stmt1->execute([':classe' => $classe]);
         if ($stmt1->rowCount() > 0) {
-            $output1 = array();
             $output1 = $stmt1->fetchAll();
             $newOutput1 = array();
             array_push($newOutput1, $output1, $id_planning, $lieux);
