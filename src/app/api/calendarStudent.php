@@ -24,7 +24,7 @@ if (isset($_POST["id"])) {
         $startDate = $classOutput[0]['debut_cours'];
         $endDate = $classOutput[0]['fin_cours'];
 
-    $stmt = $conn->prepare("SELECT * FROM planning WHERE `classe` = :classe OR `nom` = :name AND [Date] BETWEEN ':startDate' AND ':endDate 23:59:59'");
+    $stmt = $conn->prepare("SELECT * FROM planning WHERE `classe` = :classe OR `nom` = :name AND Date BETWEEN ':startDate' AND ':endDate 23:59:59'");
     $stmt->execute([':name' => $name, ':classe' => $classe, ':startDate' => $startDate, ':endDate' => $endDate]);
 
     if ($stmt->rowCount() > 0) {
