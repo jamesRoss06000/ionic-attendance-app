@@ -26,7 +26,7 @@ if (isset($_POST["date"])) {
         $newOutput = array();
         array_push($newOutput, $output, $id_planning, $lieux);
         echo json_encode($newOutput);
-    } else {
+    } else if {
         $stmt1 = $conn->prepare("SELECT * FROM users WHERE `classe` = :classe");
         $stmt1->execute([':classe' => $classe]);
         if ($stmt1->rowCount() > 0) {
@@ -35,5 +35,8 @@ if (isset($_POST["date"])) {
             array_push($newOutput1, $output1, $id_planning, $lieux);
             echo json_encode($newOutput1);
         }
+    } else {
+        $newOutput2 = 'No results found';
+        echo json_encode($newOutput2);
     }
 }
